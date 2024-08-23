@@ -2,3 +2,4 @@ scrapetube
 gspread
 telebot
 schedule
+pyinstaller
