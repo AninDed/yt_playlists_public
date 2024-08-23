@@ -1,0 +1,6 @@
+{
+  "URL": "sheet_url",
+  "TABLE" : "table_name",
+  "BOT_TOKEN": "bot_token",
+  "CHAT_IDS": {"games": -12345, "enter": -12345, "logs": 12345}
+}
