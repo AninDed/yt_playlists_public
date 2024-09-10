@@ -45,7 +45,7 @@ class Util:
         return out, exs_out, msg, categories
 
     def get_videos(self, data, categories):
-        ans = {key: set() for key in categories.keys()}
+        ans = {key: [] for key in categories.keys()}
         for row in data:
             videos = scrapetube.get_channel(channel_username=row['Channels'], content_type='videos')
             shorts = []
@@ -60,7 +60,7 @@ class Util:
                             continue
                         length = vid['lengthText']['simpleText'].split(':')
                         if len(length) == 1 or len(length) == 2 and (int(length[0]) < 11 or int(length[0]) == 11 and int(length[1]) == 00):
-                            ans[row['Category']].add(vid['videoId'])
+                            ans[row['Category']].append(vid['videoId'])
                             break
                     except:
                         self.logger.warning("Video error")
@@ -74,7 +74,7 @@ class Util:
                 for vid in shorts:
                     try:
                         if vid['viewCountText']['accessibility']['accessibilityData'] is not None:
-                            ans[row['Category']].add(vid['videoId'])
+                            ans[row['Category']].append(vid['videoId'])
                             shorts_count += 1
                             if shorts_count == shorts_limit:
                                 break
