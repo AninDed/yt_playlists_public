@@ -3,6 +3,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime, timezone
 import json
+scrapetube.scrapetube.type_property_map['shorts'] = 'reelWatchEndpoint'
 
 
 class Util:
@@ -73,11 +74,10 @@ class Util:
                 shorts_count = 0
                 for vid in shorts:
                     try:
-                        if vid['viewCountText']['accessibility']['accessibilityData'] is not None:
-                            ans[row['Category']].append(vid['videoId'])
-                            shorts_count += 1
-                            if shorts_count == shorts_limit:
-                                break
+                        ans[row['Category']].append(vid['videoId'])
+                        shorts_count += 1
+                        if shorts_count == shorts_limit:
+                            break
                     except:
                         self.logger.warning("Short error")
                         continue
