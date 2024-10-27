@@ -3,6 +3,7 @@ import telebot
 import schedule
 import time
 from datetime import datetime, timezone
+import pytz
 import threading
 import logging
 
@@ -16,6 +17,10 @@ file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
 ut = util.Util(logger)
+TIME_ZONE = ut.TIME_ZONE
+TIME_RUN = ut.TIME_RUN
+
+
 logs_id = ut.LOGS_ID
 bot = telebot.TeleBot(ut.BOT_TOKEN)
 del ut
@@ -74,7 +79,7 @@ def server_time(message):
     try:
         logger.info("Starting server_time")
 
-        now = datetime.now(timezone.utc)
+        now = datetime.now(pytz.timezone(TIME_ZONE))
 
         bot.send_message(message.chat.id, now)
         logger.info("Ending server_time")
@@ -113,8 +118,8 @@ def send_log_file():
 
 
 def check_time_and_run():
-    now = datetime.now(timezone.utc)
-    if now.hour == 8 and now.minute == 0:
+    now = datetime.now(pytz.timezone(TIME_ZONE))
+    if now.hour == TIME_RUN["hours"] and now.minute == TIME_RUN["minutes"]:
         scheduled_function()
 
 

@@ -2,5 +2,7 @@
   "URL": "sheet_url",
   "TABLE" : "table_name",
   "BOT_TOKEN": "bot_token",
-  "CHAT_IDS": {"games": -12345, "enter": -12345, "logs": 12345}
+  "CHAT_IDS": {"games": -12345, "enter": -12345, "logs": 12345},
+  "TIME_ZONE": "time_zone",
+  "TIME_RUN": {"hours": 0, "minutes": 0}
 }

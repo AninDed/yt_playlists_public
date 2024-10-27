@@ -2,6 +2,7 @@ import scrapetube
 import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime, timezone
+import pytz
 import json
 scrapetube.scrapetube.type_property_map['shorts'] = 'reelWatchEndpoint'
 
@@ -20,7 +21,9 @@ class Util:
         self.LOGS_ID = self.data["CHAT_IDS"]["logs"]
         self.PREFIX = "https://www.youtube.com/watch_videos?video_ids="
         self.SIZE = 20
-        self.NOW = datetime.now()
+        self.TIME_ZONE = self.data["TIME_ZONE"]
+        self.TIME_RUN = self.data["TIME_RUN"]
+        self.NOW = datetime.now(pytz.timezone(self.TIME_ZONE))
 
     def read_file(self, file_path):
         client = gspread.authorize(self.CREDS)
