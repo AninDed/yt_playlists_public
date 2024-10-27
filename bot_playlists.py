@@ -114,7 +114,7 @@ def send_log_file():
 
 def check_time_and_run():
     now = datetime.now(timezone.utc)
-    if now.hour == 7 and now.minute == 0:
+    if now.hour == 8 and now.minute == 0:
         scheduled_function()
 
 
