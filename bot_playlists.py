@@ -128,4 +128,5 @@ schedule.every().minute.do(check_time_and_run)
 scheduler_thread = threading.Thread(target=run_scheduler)
 scheduler_thread.start()
 
+logger.info("Starting bot")
 bot.infinity_polling(timeout=10, long_polling_timeout=5)
